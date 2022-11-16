@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Bucket-List!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/favicon.png') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <a href="{{ path('main_home') }}" class="site-title" title="Bucket-List | Home">
+                    <img src="{{ asset('img/logo.png') }}">  Bucket-List
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('main_home') }}">Home</a></li>
+                        <li><a href="{{ path('wish_list') }}">Liste des souhaits</a></li>
+                        <li><a href="{{ path('main_aboutUs') }}">About us</a></li>
+                    </ul>
+                </nav>
+
+
+            </header>
+
+
+
+        {% block body %}{% endblock %}
+
+
+
+
+            <footer>
+                &copy;{{ "now" | date("Y") }} Bucket-List
+
+
+            </footer>
+        </div>
+    </body>
+</html>
