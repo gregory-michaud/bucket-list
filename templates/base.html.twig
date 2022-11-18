@@ -18,13 +18,21 @@
                     <ul>
                         <li><a href="{{ path('main_home') }}">Home</a></li>
                         <li><a href="{{ path('wish_list') }}">Liste des souhaits</a></li>
+                        <li><a href="{{ path('wish_ajouter') }}">Ajouter un souhait</a></li>
                         <li><a href="{{ path('main_aboutUs') }}">About us</a></li>
                     </ul>
                 </nav>
 
 
             </header>
-
+            {# read and display all flash messages #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
 
 
         {% block body %}{% endblock %}

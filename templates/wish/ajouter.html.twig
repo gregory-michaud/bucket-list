@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Ajout d'un nouveau souhait
+
+{% endblock %}
+
+{% block body %}
+    {{ form_start(wishForm) }}
+    {{ form_widget(wishForm) }}
+    <button>Envoyer</button>
+    {{ form_end(wishForm) }}
+
+{% endblock %}
+

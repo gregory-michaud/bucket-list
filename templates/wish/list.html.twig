@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Liste des souhaits
+    <ul>
+    {% for wish in wishes %}
+        <li><a href="{{ path('wish_detail', {'id': wish.id}) }}">{{ wish.title }}</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block title %}

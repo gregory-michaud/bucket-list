@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ parent() }} | Le detail d'un souhait
+    {{ parent() }} | Le detail du souhait numéro {{ wish.id }}
 {% endblock %}
 
 {% block body %}
-    Le detail d'un souhait
+    <ul>
+        <li>{{ wish.title }}</li>
+        <li>{{ wish.description }}</li>
+        <li>{{ wish.author }}</li>
+        <li>{{ wish.dateCreated | date("d/m/Y H:i:s") }}</li>
+    </ul>
+
+
 {% endblock %}
 
