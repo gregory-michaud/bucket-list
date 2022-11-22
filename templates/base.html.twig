@@ -16,9 +16,18 @@
                 </a>
                 <nav>
                     <ul>
+                        {% if app.user %}
+                            <li><a href="#" disabled>{{ app.user.pseudo }}</a></li>
+                            <li><a href="{{ path('wish_ajouter') }}">Ajouter un souhait</a></li>
+                            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                            <li><a href="{{ path('app_register') }}">Créer son compte</a></li>
+                        {% endif %}
+
                         <li><a href="{{ path('main_home') }}">Home</a></li>
                         <li><a href="{{ path('wish_list') }}">Liste des souhaits</a></li>
-                        <li><a href="{{ path('wish_ajouter') }}">Ajouter un souhait</a></li>
+
                         <li><a href="{{ path('main_aboutUs') }}">About us</a></li>
                     </ul>
                 </nav>
