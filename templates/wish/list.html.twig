@@ -3,7 +3,7 @@
 {% block body %}
     <ul>
     {% for wish in wishes %}
-        <li><a href="{{ path('wish_detail', {'id': wish.id}) }}">{{ wish.title }}</a></li>
+        <li><a href="{{ path('wish_detail', {'id': wish.id}) }}">{{ wish.title }} - {{ wish.category ? wish.category.name : 'Pas de catégorie' }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

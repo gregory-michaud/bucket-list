@@ -9,6 +9,7 @@
         <li>{{ wish.title }}</li>
         <li>{{ wish.description }}</li>
         <li>{{ wish.author }}</li>
+        <li>{{ wish.category ? wish.category.name : 'Pas de catégorie' }}</li>
         <li>{{ wish.dateCreated | date("d/m/Y H:i:s") }}</li>
     </ul>
 

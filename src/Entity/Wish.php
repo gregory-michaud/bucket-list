@@ -29,6 +29,9 @@ class Wish
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreated = null;
 
+    #[ORM\ManyToOne(inversedBy: 'wishes')]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Wish
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

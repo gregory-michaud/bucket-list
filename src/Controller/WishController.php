@@ -16,10 +16,7 @@ class WishController extends AbstractController
     #[Route('/wish/list', name: 'wish_list')]
     public function list(WishRepository $repository): Response
     {
-        $wishes = $repository->findBy(
-          ['isPublished' => true],
-          ['dateCreated' => 'DESC']
-        );
+        $wishes = $repository->findWishesWithCategory();
 
         dump($wishes);
         return $this->render('wish/list.html.twig', [
@@ -30,7 +27,7 @@ class WishController extends AbstractController
     #[Route('/wish/detail/{id}', name: 'wish_detail')]
     public function detail($id, WishRepository $repository): Response
     {
-        $wish = $repository->find($id);
+        $wish = $repository->findOneWishWithCategoryById($id);
         return $this->render('wish/detail.html.twig', [
             'wish' => $wish
         ]);
