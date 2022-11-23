@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\Services\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,7 +37,7 @@ class WishController extends AbstractController
 
     #[IsGranted("ROLE_USER")]
     #[Route('/wish/ajouter', name: 'wish_ajouter')]
-    public function ajouter(Request $request, EntityManagerInterface $entityManager): Response
+    public function ajouter(Request $request, EntityManagerInterface $entityManager, Censurator $censurator): Response
     {
         $wish = new Wish();
         $wish->setAuthor($this->getUser()->getUserIdentifier());
@@ -48,6 +49,9 @@ class WishController extends AbstractController
         if($wishForm->isSubmitted() && $wishForm->isValid()){
             $wish->setIsPublished(true);
             $wish->setDateCreated(new \DateTime());
+
+            $wish->setTitle($censurator->purify($wish->getTitle()));
+            $wish->setDescription($censurator->purify($wish->getDescription()));
 
             $entityManager->persist($wish);
             $entityManager->flush();
